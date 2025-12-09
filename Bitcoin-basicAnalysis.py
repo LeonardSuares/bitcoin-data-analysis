@@ -19,6 +19,14 @@ from warnings import filterwarnings
 filterwarnings("ignore")
 
 df = pd.read_csv(r'C:\Users\leona\PycharmProjects\Python Data Analysis Projects\Bitcoin-dataAnalysis\bitcoin_price_Training - Training.csv')
-print(df.head(5))
-print(df.info())
-print(df.describe().T)
+# print(df.head(5))
+# print(df.info())
+# print(df.describe().T)
+
+df["Date"] = pd.to_datetime(df["Date"])
+
+df_isnull = df.isnull().sum()
+print(df_isnull)
+
+df_duplicate = df.duplicated().sum()
+print(df_duplicate)
