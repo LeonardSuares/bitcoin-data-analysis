@@ -26,7 +26,21 @@ df = pd.read_csv(r'C:\Users\leona\PycharmProjects\Python Data Analysis Projects\
 df["Date"] = pd.to_datetime(df["Date"])
 
 df_isnull = df.isnull().sum()
-print(df_isnull)
+# print(df_isnull)
 
 df_duplicate = df.duplicated().sum()
-print(df_duplicate)
+# print(df_duplicate)
+
+data = df.sort_index(ascending= False).reset_index()
+
+data.drop('index', axis=1, inplace=True)
+# print(data.columns)
+
+plt.figure(figsize=(20,12))
+
+for index , col in enumerate (['Open', 'High', 'Low', 'Close'], 1):
+    plt.subplot(2,2, index)
+    plt.plot(df['Date'], df[col])
+    plt.title(col)
+
+plt.show()
