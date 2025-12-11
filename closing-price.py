@@ -46,15 +46,52 @@ data = data.set_index('Date')
 # plt.show()
 
 #plotting charts side by side for No scaling and log scaling
-plt.figure(figsize=(16,6))
+# plt.figure(figsize=(16,6))
+#
+# plt.subplot(1,2,1)
+# data['Close'].plot()
+# plt.title('No Scaling')
+#
+# plt.subplot(1,2,2)
+# np.log1p(data['Close']).plot()
+# plt.title('Log Scaling')
+# plt.yscale('log')
+#
+# plt.show()
 
-plt.subplot(1,2,1)
-data['Close'].plot()
-plt.title('No Scaling')
+# Analyzing closing price on a Yearly, Quarterly, Monthly basis
+plt.figure(figsize=(18,18))
 
-plt.subplot(1,2,2)
-np.log1p(data['Close']).plot()
-plt.title('Log Scaling')
-plt.yscale('log')
+plt.subplot(2,2,1)
+data['Close'].resample('Y').mean().plot()
+plt.title(
+    'Year',
+    # --- ADD THIS PARAMETER ---
+    bbox={'facecolor': 'lightgray', 'alpha': 0.6, 'pad': 4}
+)
+
+plt.subplot(2,2,2)
+data['Close'].resample('Q').mean().plot()
+plt.title(
+    'Quater',
+    # --- ADD THIS PARAMETER ---
+    bbox={'facecolor': 'lightgray', 'alpha': 0.6, 'pad': 4}
+)
+
+plt.subplot(2,2,3)
+data['Close'].resample('M').mean().plot()
+plt.title(
+    'Month',
+    # --- ADD THIS PARAMETER ---
+    bbox={'facecolor': 'lightgray', 'alpha': 0.6, 'pad': 4}
+)
+
+plt.subplot(2,2,4)
+data['Close'].resample('D').mean().plot()
+plt.title(
+    'Day',
+    # --- ADD THIS PARAMETER ---
+    bbox={'facecolor': 'lightgray', 'alpha': 0.6, 'pad': 4}
+)
 
 plt.show()
